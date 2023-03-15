@@ -12,7 +12,7 @@ import Navbar from "./components/Navbar";
 import Discover from "./pages/Discover";
 import NoMatch from "./pages/NoMatch";
 import Profile from "./pages/Profile";
-
+import EventPage from "./pages/EventPage";
 import Footer from "./components/Footer";
 
 import {
