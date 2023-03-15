@@ -23,6 +23,15 @@ export const QUERY_ALL_EVENTS = gql`
   }
 `;
 
+export const QUERY_EVENT = gql`
+{
+  event{
+    _id
+  }
+}
+
+`;
+
 export const QUERY_CHARITY = gql`
   {
     charity {
