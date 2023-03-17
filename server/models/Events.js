@@ -23,13 +23,16 @@ const eventSchema = new Schema({
     required: true,
   },
 
-  savedCharity: {
+  savedCharityID: {
+    type: Schema.Types.ObjectId,
+    ref:"Charity"
+  },
+    savedCharityName: {
     // type: Schema.Types.ObjectId,
     type: String,
-    required: true
     // ref: "Charity"
   },
-  
+
 });
 
 const Event = model('Event', eventSchema);

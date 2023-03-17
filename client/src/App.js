@@ -80,13 +80,14 @@ function App() {
 
             <Route path="/EventForm" element={<EventForm />} />
             <Route path="/event/:id" element ={<EventPage />}/>
-            
-            
+            <Route path="/charity/:id" element ={<CharityProfile />}/>
+          
             
             {/* <Route
                 path="/success"
                 element={<Success />}
               /> */}
+              
             <Route path="/discover" element={<Discover />} />
 {/* change back to /profile */}
             <Route path="/profile" element={<Profile />} />

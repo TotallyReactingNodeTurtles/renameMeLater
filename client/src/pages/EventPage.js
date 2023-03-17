@@ -24,7 +24,7 @@ const EventPage = () => {
         <div>
           <img className="rounded-t-lg" src={event.image} alt="" />
           <h1>{event.title}</h1>
-          <p>{event.savedCharity}</p>
+          <p>{event.savedCharityID.charityName}</p>
           <p>{event.date}</p>
           <p>{event.address}</p>
           <p>{event.description}</p>

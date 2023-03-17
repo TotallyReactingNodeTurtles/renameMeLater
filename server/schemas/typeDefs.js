@@ -43,6 +43,7 @@ type Event{
     image:String
     date:String!
     address:String!
+    savedCharityID: Charity
     savedCharity: String!
 }
 

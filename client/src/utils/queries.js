@@ -31,6 +31,9 @@ export const QUERY_ALL_EVENTS = gql`
       savedCharity
       date
       address
+      savedCharityID{
+        charityName
+      }
     }
   }
 `;
@@ -46,6 +49,9 @@ export const QUERY_EVENT = gql`
       savedCharity
       date
       address
+      savedCharityId{
+        charityName
+      }
     }
   }
 `;
