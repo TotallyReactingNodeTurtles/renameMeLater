@@ -71,7 +71,7 @@ function EventCard({ event }) {
             </h5>
           </Link>
           <p className="font-normal text-gray-700 mb-3 dark:text-gray-400">
-            <a href="/charity/:id</p>">{event.savedCharity}</a>
+            <Link to={ `/charity/${event.savedCharity._id}`}>{event.savedCharity}</Link>
           </p>
 
           <div className="flex space-x-1 mb-2">
