@@ -51,8 +51,8 @@ export const QUERY_EVENT = gql`
 `;
 
 export const QUERY_CHARITY = gql`
-query charity($_id: ID!) {
-    charity (_id: $_id){
+query charity($charityId: ID!) {
+    charity (charityId: $_id){
       username
       email
       savedEvents

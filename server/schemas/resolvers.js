@@ -17,8 +17,8 @@ const resolvers = {
       return Charity.find();
     },
 
-    charity: async (parent, { _id }) => {
-      return Charity.findOne({ _id: _id});
+    charity: async (parent, { charityId }) => {
+      return Charity.findOne({ _id: charityId});
     },
     allEvents: async () => {
       return Event.find();
