@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import React, { useEffect} from "react";
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import VolunteerSignup from "./pages/VolunteerSignup";
@@ -48,11 +48,9 @@ const client = new ApolloClient({
 });
 
 function App() {
-  const state = useStateContext();
-  const dispatch = useDispatchContext();
-
   //if token is expired or tampered with, the token is destroyed and the user is logged out.
   useEffect(()=>{
+    const dispatch = useDispatchContext();
     if(Auth.isTokenExpired() || (!Auth.getProfile() && localStorage.getItem('id_token'))){
       dispatch({type: ACTIONS.LOGGED_IN, payload: false});
       Auth.logout();
