@@ -4,15 +4,15 @@ import { QUERY_VOLUNTEER, QUERY_GOOGLE_VOLUNTEER, QUERY_CHARITY } from '../utils
 import React, { useState, useEffect } from 'react';
 import { useMutation, useQuery } from "@apollo/client";
 import Auth from "../utils/auth";
-import styles from '../styles/EventCard.module.css'
+import styles from '../styles/EventCard.module.css';
 
 
 function EventCard({ event }) {
   
   const [userToken, setUserToken] = useState(null);
-  const [userData, setUserData] = useState(null)
-  const [isEventRemoved, setIsEventRemoved] = useState(true);
-  const [charityName, setCharityName] = useState(event.savedCharity)
+  // const [userData, setUserData] = useState(null)
+  // const [isEventRemoved, setIsEventRemoved] = useState(true);
+  // const [charityName, setCharityName] = useState(event.savedCharity)
   const [addVolunteerEvent, { error }] = useMutation(ADD_VOLUNTEER_EVENT, {
     context: { token: userToken },
     update: (cache, { data: { addVolunteerEvent } }) => {
@@ -20,7 +20,7 @@ function EventCard({ event }) {
       // Update the cache
     },
     onError: (err) => {
-      // console.error(err);
+      console.error(err);
     },
   });
   const [addGoogleVolunteerEvent, { error: googlevError }] = useMutation(ADD_GOOGLE_VOLUNTEER_EVENT, {
@@ -30,7 +30,7 @@ function EventCard({ event }) {
       // Update the cache
     },
     onError: (err) => {
-      // console.error(err);
+  console.error(err);
     },
   });
   const [removeVolunteerEvent] = useMutation(REMOVE_VOLUNTEER_EVENT,{
@@ -39,20 +39,20 @@ function EventCard({ event }) {
   const [removeGoogleVolunteerEvent] = useMutation(REMOVE_GOOGLE_VOLUNTEER_EVENT,{
     context: { token: userToken}
   })
-  const {loading: volunteerLoading, error: volunteerError, data: volunteerData, refetch: refetchV} = useQuery(QUERY_VOLUNTEER,{
+  const {data: volunteerData, refetch: refetchV} = useQuery(QUERY_VOLUNTEER,{
     variables:{
       _id: userToken?.data._id,
     },
     skip: !userToken?.data._id,
   })
-  const {loading: googleVolunteerLoading, error: googleVolunteerError, data: googleVolunteerData, refetch} = useQuery(QUERY_GOOGLE_VOLUNTEER,{
+  const {data: googleVolunteerData, refetch} = useQuery(QUERY_GOOGLE_VOLUNTEER,{
     variables:{
       _id: userToken?.data._id,
     },
     skip: !userToken?.data._id,
   })
 
-  const {loading: charityLoading, error: charityError, data: charityData} = useQuery(QUERY_CHARITY,{
+  const {data: charityData} = useQuery(QUERY_CHARITY,{
     variables:{
       _id: userToken?.data._id,
     },
@@ -60,7 +60,7 @@ function EventCard({ event }) {
   })
 
   const handleAddEvent = async (e) => {
-    const eventId = e.target.dataset.id;
+    // const eventId = e.target.dataset.id;
   
     try {
       if(volunteerData?.volunteer){
@@ -69,7 +69,7 @@ function EventCard({ event }) {
             eventId: event._id,
           },
           update: (cache, { data: { addVolunteerEvent } }) => {
-            // ...
+            console.log(data, errors);
           },
         });
         refetchV({
@@ -85,8 +85,8 @@ function EventCard({ event }) {
         refetch({
           _id: userToken?.data._id,
         })
+        console.log(googleData, googleErrors);
       }
-        
       
     } catch (error) {
     }
@@ -102,6 +102,7 @@ function EventCard({ event }) {
       refetchV({
         _id: userToken?.data._id,
     })
+    console.log(volunteerData, errors);
     }
     if(googleVolunteerData?.googleVolunteer){
       const {googleVolunteerData, errors: googleErrors} = await removeGoogleVolunteerEvent({
@@ -112,14 +113,13 @@ function EventCard({ event }) {
       refetch({
         _id: userToken?.data._id,
     })
+    console.log(googleVolunteerData, googleErrors);
     }
       
       
   }
-  console.log(charityData)
-console.log(googleVolunteerData)
+
   useEffect(() => {
-    console.log(googleVolunteerData)
     setUserToken(Auth.getProfile())
     console.log(event._id);
   }, [event]);
