@@ -1,15 +1,14 @@
-//Navbar
+
 //Note: When in mobile view, menu automatically "hamburgers".
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
 
-import CharityHamburger from "./CharityHamburger";
 import UserHamburger from "./UserHamburger";
 
-import { useStateContext } from "../utils/GlobalState";
-import { useState, useEffect,useContext } from "react";
+// import { useStateContext } from "../utils/GlobalState";
+import { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import {
   QUERY_GOOGLE_VOLUNTEER,
@@ -45,13 +44,13 @@ function classNames(...classes) {
 }
 
 function Navbar() {
-  const state = useStateContext();
+  // const state = useStateContext();
   const [userData, setUserData] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userId, setUserId] = useState(Auth.getProfile()?.data._id);
+  const userId = Auth.getProfile()?.data._id; //edited from useState
   const {
-    loading: loadingGooglev,
-    error: errorGooglev,
+    // loading: loadingGooglev,
+    // error: errorGooglev,
     data: dataGooglev,
   } = useQuery(QUERY_GOOGLE_VOLUNTEER, {
     variables: {
@@ -59,10 +58,10 @@ function Navbar() {
     },
     skip: !userId,
   });
-  const [isNavOpen, setIsNavOpen] = useState(false);
+  // const [isNavOpen, setIsNavOpen] = useState(false);
   const {
-    loading: loadingCharity,
-    error: errorCharity,
+    // loading: loadingCharity,
+    // error: errorCharity,
     data: dataCharity,
   } = useQuery(QUERY_CHARITY, {
     variables: {
@@ -72,8 +71,8 @@ function Navbar() {
   });
 
   const {
-    loading: loadingVolunteer,
-    error: errorVolunteer,
+    // loading: loadingVolunteer,
+    // error: errorVolunteer,
     data: dataVolunteer,
   } = useQuery(QUERY_VOLUNTEER, {
     variables: {
@@ -81,7 +80,7 @@ function Navbar() {
     },
     skip: !userId,
   });
-console.log(isLoggedIn)
+
   useEffect(() => {
     if (dataCharity?.charity) {
       setUserData(dataCharity.charity);
