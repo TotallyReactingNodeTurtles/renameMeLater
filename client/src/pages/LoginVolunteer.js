@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { LOGIN_GOOGLE_VOLUNTEER, LOGIN_VOLUNTEER } from "../utils/mutations";
 import Auth from "../utils/auth";
 import { LockClosedIcon } from "@heroicons/react/20/solid";
+import 'dotenv/config'
 
 function LoginVolunteer(props) {
   const [uservformState, setFormState] = useState({

@@ -6,6 +6,7 @@ const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 const dotenv = require('dotenv').config();
 const apiRoutes = require('./routes/api/index');
+require('dotenv').config();
 
 // // Stripe
 // const cors = require("cors")

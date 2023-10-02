@@ -12,7 +12,7 @@ function EventCard({ event }) {
   const [userToken, setUserToken] = useState(null);
   // const [userData, setUserData] = useState(null)
   // const [isEventRemoved, setIsEventRemoved] = useState(true);
-  // const [charityName, setCharityName] = useState(event.savedCharity)
+  const [charityName, setCharityName] = useState(event.savedCharity)
   const [addVolunteerEvent, { error }] = useMutation(ADD_VOLUNTEER_EVENT, {
     context: { token: userToken },
     update: (cache, { data: { addVolunteerEvent } }) => {

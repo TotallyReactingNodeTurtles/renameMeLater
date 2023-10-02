@@ -14,7 +14,7 @@ import ViewOnlyProfile from "./pages/ViewOnlyProfile"
 import EventPage from "./pages/EventPage";
 import Footer from "./components/Footer";
 import Auth from './utils/auth'
-import { useStateContext, useDispatchContext } from "./utils/GlobalState";
+import {useDispatchContext } from "./utils/GlobalState";
 
 import {
   ApolloClient,
@@ -48,9 +48,9 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const dispatch = useDispatchContext();
   //if token is expired or tampered with, the token is destroyed and the user is logged out.
   useEffect(()=>{
-    const dispatch = useDispatchContext();
     if(Auth.isTokenExpired() || (!Auth.getProfile() && localStorage.getItem('id_token'))){
       dispatch({type: ACTIONS.LOGGED_IN, payload: false});
       Auth.logout();
